@@ -1,0 +1,9 @@
+.form-control {
+  width: 150px;
+}
+
+@media screen and (min-width: 786px) {
+  .form-control {
+    width: 550px;
+  }
+}
