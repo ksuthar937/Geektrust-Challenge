@@ -6,9 +6,13 @@ function Header() {
   const { query, dispatch } = useData();
 
   return (
-    <nav className="navbar bg-body-tertiary">
-      <div className="container-fluid">
-        <span className="navbar-brand mb-0 h1">Geektrust - Admin UI</span>
+    <>
+      <nav className="navbar bg-body-tertiary">
+        <div className="container-fluid">
+          <span className="navbar-brand mb-0 h1">Geektrust - Admin UI</span>
+        </div>
+      </nav>
+      <div className="search-bar">
         <input
           className="form-control me-2"
           type="search"
@@ -20,7 +24,7 @@ function Header() {
           }
         />
       </div>
-    </nav>
+    </>
   );
 }
 

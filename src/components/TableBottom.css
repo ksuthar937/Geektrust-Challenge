@@ -1,4 +1,11 @@
 .alignButtons {
-  display: flex;
-  justify-content: space-evenly;
+  margin-bottom: 6rem;
+}
+
+@media (min-width: 520px) {
+  .alignButtons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 6rem;
+  }
 }

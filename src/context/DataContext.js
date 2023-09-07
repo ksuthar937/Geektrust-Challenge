@@ -32,7 +32,13 @@ function reducer(state, action) {
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
     case "search":
-      return { ...state, query: action.payload, currentPage: 1 };
+      return {
+        ...state,
+        query: action.payload,
+        filterdList:
+          action.payload === "" ? state.adminData : state.filterdList,
+        currentPage: 1,
+      };
     case "filter":
       return { ...state, filterdList: action.payload };
     case "selected":
@@ -76,7 +82,7 @@ function reducer(state, action) {
     case "edited/data":
       return {
         ...state,
-        adminData: action.payload,
+        filterdList: action.payload,
       };
     case "edited/save":
       return {

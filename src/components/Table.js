@@ -12,7 +12,6 @@ function Table() {
     dispatch,
     currentPage,
     adminDataPerPage,
-    isLoading,
     error,
   } = useData();
 
@@ -25,14 +24,6 @@ function Table() {
     indexOfLastAdminData
   );
 
-  if (isLoading)
-    return (
-      <div className="d-flex justify-content-center loader">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
   if (error)
     return (
       <h4 className="error">
@@ -50,49 +41,55 @@ function Table() {
       <div className="content">
         <br />
         <div className="row">
-          <table className="table">
-            <thead>
-              <tr className="table-warning">
-                <th scope="col">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value="1"
-                      checked={selected.length === currentAdminData.length}
-                      onChange={() =>
-                        dispatch({
-                          type: "selected/All",
-                          payload: currentAdminData,
-                        })
-                      }
+          <div class="table-responsive">
+            <table className="table table-mobile-responsive ">
+              <thead>
+                <tr className="table-warning">
+                  <th scope="col">
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        value="1"
+                        checked={selected.length === currentAdminData.length}
+                        onChange={() =>
+                          dispatch({
+                            type: "selected/All",
+                            payload: currentAdminData,
+                          })
+                        }
+                      />
+                    </div>
+                  </th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Role</th>
+                  <th scope="col" className="action">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filterdList &&
+                  currentAdminData.map((member, index) => (
+                    <Member
+                      name={member.name}
+                      email={member.email}
+                      role={member.role}
+                      key={member.id}
+                      id={member.id}
+                      selectedMember={selectedMember.includes(member.id)}
+                      index={index}
                     />
-                  </div>
-                </th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
-                <th scope="col" className="action">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filterdList &&
-                currentAdminData.map((member, index) => (
-                  <Member
-                    name={member.name}
-                    email={member.email}
-                    role={member.role}
-                    key={member.id}
-                    id={member.id}
-                    selectedMember={selectedMember.includes(member.id)}
-                    index={index}
-                  />
-                ))}
-            </tbody>
-          </table>
-          <TableBottom />
+                  ))}
+              </tbody>
+            </table>
+            {filterdList.length > 0 ? (
+              <TableBottom />
+            ) : (
+              <h6 className="notFound">No Result Found 🙁</h6>
+            )}
+          </div>
         </div>
       </div>
     </div>

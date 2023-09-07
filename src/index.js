@@ -4,9 +4,13 @@ import App from "./App";
 
 import "./index.css";
 
+import { DataProvider } from "./context/DataContext";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <DataProvider>
+      <App />
+    </DataProvider>
   </React.StrictMode>
 );
